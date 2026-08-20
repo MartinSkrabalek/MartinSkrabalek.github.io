@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Martin Skrabalek — Finance, FP&A, controlling and financial modeling portfolio." />
+  <title>Martin Skrabalek | Finance Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #f5f8fc;
+      --bg-2: #edf3f9;
+      --surface: #ffffff;
+      --surface-soft: #f8fbfe;
+      --text: #102238;
+      --muted: #617187;
+      --line: #dce5ef;
+      --accent: #168f72;
+      --accent-soft: #dff5ee;
+      --blue: #356fa8;
+      --blue-soft: #e7f0fa;
+      --shadow: 0 18px 55px rgba(39, 65, 94, 0.11);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 8%, rgba(53,111,168,0.08), transparent 25%),
+        radial-gradient(circle at 90% 14%, rgba(22,143,114,0.08), transparent 23%),
+        linear-gradient(180deg, #fbfdff 0%, var(--bg) 58%, #f1f6fb 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(220,229,239,.9);
+      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,.88);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 850;
+      letter-spacing: -0.025em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #54caaa);
+      box-shadow: 0 0 20px rgba(22,143,114,.25);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      font-weight: 750;
+      font-size: 14px;
+      transition: .2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(35,65,94,.10);
+    }
+
+    .btn-primary {
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--accent), #2aa88a);
+      box-shadow: 0 12px 30px rgba(22,143,114,.18);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.76);
+    }
+
+    .hero {
+      padding: 104px 0 78px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #4d6178;
+      background: rgba(255,255,255,.8);
+      font-size: 13px;
+      font-weight: 750;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(35,65,94,.05);
+    }
+
+    .eyebrow span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      font-size: clamp(46px, 6vw, 78px);
+      line-height: 1.02;
+      letter-spacing: -0.055em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #183a5b 5%, #356fa8 48%, #168f72 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .skill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 34px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      padding: 8px 11px;
+      border-radius: 999px;
+      color: #52667d;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .hero-card {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 26px;
+      background: rgba(255,255,255,.93);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: rgba(53,111,168,.08);
+      right: -80px;
+      top: -80px;
+    }
+
+    .mini-label {
+      font-size: 12px;
+      color: #74869a;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-weight: 850;
+    }
+
+    .dashboard-title {
+      margin-top: 8px;
+      font-size: 21px;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .kpi {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      padding: 16px;
+    }
+
+    .kpi small { color: var(--muted); }
+
+    .kpi strong {
+      display: block;
+      font-size: 24px;
+      margin-top: 4px;
+      letter-spacing: -0.03em;
+    }
+
+    .positive { color: var(--accent); }
+
+    .bars {
+      display: flex;
+      align-items: end;
+      gap: 8px;
+      height: 138px;
+      margin-top: 24px;
+      padding: 20px 4px 4px;
+      border-top: 1px solid var(--line);
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 8px 8px 3px 3px;
+      background: linear-gradient(180deg, #4f8bc4, #cfe0f1);
+      min-width: 12px;
+    }
+
+    section { padding: 84px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 48px);
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 10px 32px rgba(35,65,94,.05);
+      overflow: hidden;
+      transition: .25s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(22,143,114,.28);
+      box-shadow: var(--shadow);
+    }
+
+    .project-number {
+      color: #7f90a2;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .14em;
+    }
+
+    .project h3 {
+      margin: 18px 0 8px;
+      font-size: 25px;
+      letter-spacing: -0.03em;
+    }
+
+    .project p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 580px;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .project-tags span {
+      font-size: 11px;
+      font-weight: 800;
+      color: #536a80;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 9px;
+      background: #fbfdff;
+    }
+
+    .project-arrow {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      color: var(--accent);
+      font-size: 22px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .tool {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      background: rgba(255,255,255,.82);
+    }
+
+    .tool-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      border: 1px solid #c9eade;
+      margin-bottom: 15px;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .tool h4 { margin: 0 0 6px; font-size: 16px; }
+    .tool p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      gap: 44px;
+      align-items: start;
+    }
+
+    .about-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 12px 38px rgba(35,65,94,.06);
+    }
+
+    .about-card h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .about-card p,
+    .about-copy p {
+      color: var(--muted);
+    }
+
+    .about-copy h2 {
+      margin-top: 0;
+      font-size: clamp(32px, 4vw, 48px);
+      letter-spacing: -0.04em;
+    }
+
+    .about-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .linkedin-btn {
+      color: #fff;
+      background: #0a66c2;
+      border-color: #0a66c2;
+    }
+
+    .note {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--accent);
+      color: #506478;
+      background: #eef9f5;
+      border-radius: 0 12px 12px 0;
+      font-size: 13px;
+    }
+
+    .cta {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 42px;
+      background:
+        radial-gradient(circle at 82% 30%, rgba(22,143,114,.08), transparent 35%),
+        linear-gradient(135deg, #ffffff, #eef5fb);
+      box-shadow: 0 14px 44px rgba(35,65,94,.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .cta h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 46px);
+      letter-spacing: -0.04em;
+    }
+
+    .cta p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    footer {
+      padding: 34px 0 46px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-row {
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding-top: 76px; }
+      .hero-card { max-width: 620px; }
+
+      .section-head,
+      .cta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container { width: min(var(--max), calc(100% - 24px)); }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links { gap: 8px; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      .cta { padding: 28px; }
+      section { padding: 64px 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a href="#top" class="brand">
+          <span class="brand-dot"></span>
+          Martin Skrabalek
+        </a>
+
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#about">About</a>
+          <a class="btn btn-secondary nav-cta" href="https://github.com/MartinSkrabalek" target="_blank" rel="noopener">
+            GitHub ↗
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+    <header class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span></span>
+            Finance portfolio · FP&amp;A · Controlling
+          </div>
+
+          <h1>
+            I turn financial data into
+            <span class="gradient-text">clear decisions.</span>
+          </h1>
+
+          <p>
+            Portfolio focused on financial modeling, budgeting, forecasting,
+            cash-flow planning and management reporting. Each project is designed
+            to show practical finance thinking — not only spreadsheet skills.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">Explore projects ↓</a>
+            <a class="btn btn-secondary" href="#about">About me</a>
+          </div>
+
+          <div class="skill-row">
+            <span class="pill">FP&amp;A</span>
+            <span class="pill">Financial Controlling</span>
+            <span class="pill">Excel</span>
+            <span class="pill">Budgeting</span>
+            <span class="pill">Forecasting</span>
+            <span class="pill">Cash Flow</span>
+            <span class="pill">Financial Modeling</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="mini-label">Portfolio preview</div>
+          <div class="dashboard-title">Management Dashboard</div>
+
+          <div class="kpi-grid">
+            <div class="kpi">
+              <small>Revenue</small>
+              <strong>€18.4m</strong>
+            </div>
+            <div class="kpi">
+              <small>Forecast vs Budget</small>
+              <strong class="positive">+3.8%</strong>
+            </div>
+            <div class="kpi">
+              <small>EBITDA margin</small>
+              <strong>27.6%</strong>
+            </div>
+            <div class="kpi">
+              <small>Closing cash</small>
+              <strong>€4.2m</strong>
+            </div>
+          </div>
+
+          <div class="bars" aria-label="Illustrative financial chart">
+            <div class="bar" style="height: 43%"></div>
+            <div class="bar" style="height: 61%"></div>
+            <div class="bar" style="height: 52%"></div>
+            <div class="bar" style="height: 72%"></div>
+            <div class="bar" style="height: 68%"></div>
+            <div class="bar" style="height: 83%"></div>
+            <div class="bar" style="height: 76%"></div>
+            <div class="bar" style="height: 92%"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="mini-label">Selected work</div>
+            <h2>Finance projects</h2>
+          </div>
+          <p>
+            The first case studies focus on recurring finance problems:
+            performance tracking, liquidity, real-estate planning and debt management.
+          </p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div class="project-number">PROJECT 01</div>
+            <div class="project-arrow">↗</div>
+            <h3>Budget vs Forecast Dashboard</h3>
+            <p>
+              Management reporting model comparing Actual, Budget and Forecast,
+              including variance analysis, KPI tracking and executive-level outputs.
+            </p>
+            <div class="project-tags">
+              <span>FP&amp;A</span>
+              <span>Variance Analysis</span>
+              <span>Excel</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-number">PROJECT 02</div>
+            <div class="project-arrow">↗</div>
+            <h3>12-Month Cash Flow Forecast</h3>
+            <p>
+              Rolling liquidity model combining operating cash flow, CAPEX,
+              financing and monthly funding requirements.
+            </p>
+            <div class="project-tags">
+              <span>Cash Flow</span>
+              <span>Forecasting</span>
+              <span>Treasury</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-number">PROJECT 03</div>
+            <div class="project-arrow">↗</div>
+            <h3>Real Estate Financial Model</h3>
+            <p>
+              Multi-year model covering rental income, CPI indexation,
+              vacancy assumptions, lease expiries, OPEX and CAPEX planning.
+            </p>
+            <div class="project-tags">
+              <span>Real Estate</span>
+              <span>CPI</span>
+              <span>Scenario Analysis</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-number">PROJECT 04</div>
+            <div class="project-arrow">↗</div>
+            <h3>Loan Management Model</h3>
+            <p>
+              Structured debt schedule with principal balances, interest,
+              repayment dates, maturities, currencies and lender/borrower views.
+            </p>
+            <div class="project-tags">
+              <span>Debt</span>
+              <span>Interest</span>
+              <span>Corporate Finance</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="mini-label">Capabilities</div>
+            <h2>What I work with</h2>
+          </div>
+          <p>
+            The portfolio combines technical modeling with business interpretation
+            and clear management communication.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <div class="tool">
+            <div class="tool-icon">01</div>
+            <h4>Planning</h4>
+            <p>Budgeting, rolling forecasts, scenario planning and driver-based models.</p>
+          </div>
+
+          <div class="tool">
+            <div class="tool-icon">02</div>
+            <h4>Performance</h4>
+            <p>Actual vs Budget vs Forecast, KPI reporting and variance commentary.</p>
+          </div>
+
+          <div class="tool">
+            <div class="tool-icon">03</div>
+            <h4>Liquidity</h4>
+            <p>Cash-flow forecasting, funding requirements and debt schedules.</p>
+          </div>
+
+          <div class="tool">
+            <div class="tool-icon">04</div>
+            <h4>Modeling</h4>
+            <p>Excel-based financial models, assumptions, sensitivities and outputs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-card">
+          <div class="mini-label">Approach</div>
+          <h3>Built for real-world finance</h3>
+          <p>
+            I prefer models that are easy to understand, easy to update
+            and useful for an actual business decision.
+          </p>
+
+          <div class="note">
+            All portfolio models use fictional or anonymized data and are created
+            solely for demonstration purposes.
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <div class="mini-label">About me</div>
+          <h2>Finance, translated into something people can actually use.</h2>
+
+          <p>
+            My focus is financial controlling and FP&amp;A — connecting detailed
+            financial data with a clear view of what is happening, why it is
+            happening and what management should watch next.
+          </p>
+
+          <p>
+            This portfolio is a growing collection of practical finance case studies,
+            dashboards and financial models.
+          </p>
+
+          <div class="about-actions">
+            <!-- Replace # below with your full LinkedIn profile URL -->
+            <a class="btn linkedin-btn" href="#" target="_blank" rel="noopener">
+              LinkedIn ↗
+            </a>
+            <a class="btn btn-secondary" href="https://github.com/MartinSkrabalek" target="_blank" rel="noopener">
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta">
+          <div>
+            <div class="mini-label">Next step</div>
+            <h2>More case studies coming soon.</h2>
+            <p>
+              Future versions will include downloadable Excel models,
+              detailed case-study pages and interactive finance calculators.
+            </p>
+          </div>
+
+          <a class="btn btn-primary" href="#projects">Explore projects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© <span id="year"></span> Martin Skrabalek</div>
+      <div>Finance · FP&amp;A · Financial Modeling</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
